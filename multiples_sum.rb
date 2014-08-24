@@ -1,4 +1,7 @@
-require 'pry'
+# Problem 1 - Multiples of 3 and 5
+# If we list all the natural numbers below 10 that are multiples of 3 or 5, we get 3, 5, 6 and 9. The sum of these multiples is 23.
+# Find the sum of all the multiples of 3 or 5 below 1000.
+
 class MultipleSum
 
   attr_accessor :sum, :top
@@ -56,5 +59,6 @@ class MultipleSum
   end
 end
 
-msum = MultipleSum.new
-msum.sum_multiples({num: [2,3,5], top: 10})
+# Testing - will add these to a spec in future :)
+# msum = MultipleSum.new
+# msum.sum_multiples({num: [2,3,5], top: 10})
