@@ -3,37 +3,53 @@
 # 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
+
 class InvalidArgument < StandardError; end
 
 class EvenFibonacciSum < InvalidArgument
-  attr_accessor :sum
+  attr_accessor :sum, :prev_even_num, :next_even_num
 
   def initialize
-    @sum = 2
-  end
-
-  def sum
-    @sum
+    @sum = 0
+    @next_even_num = 2 # Initialized to second even number in the sequence.
+    @prev_even_num = 0
   end
 
   def find_sum(limit)
-    if Integer(limit) rescue false
-      calculate_sum(limit)
+    if(Integer(limit) rescue false)
+      unless limit < next_even_num
+        calculate_sum(limit)
+        return sum
+      else
+        sum
+      end
     else
       InvalidArgument.new("A valid integer is required as an input")
     end
   end
 
-  private
+  # private
 
   def calculate_sum(limit)
-
+    while next_even_num < limit
+      self.sum = sum + next_even_num
+      temp = next_even_number_fibonacci
+      # we have to call an instance variable with self or @ to write to it - otherwise ruby creates a local variable with that name
+      self.prev_even_num = next_even_num
+      self.next_even_num = temp
+    end
   end
 
-  def next_even_number_fibonacci(x)
-
+  ##
+  # if n1, n2, n3 are three consecutive even numbers in fibonacci sequence
+  # n3 = 4*n2 + n1 
+  # e.g 8, 34, 144 => 144 = 4*34 + 8
+  ##
+  def next_even_number_fibonacci
+    4 * next_even_num + prev_even_num
   end
 end
 
-even_sum = EvenFibonacciSum.new
-p even_sum.find_sum(4000000)
+# Sample test - Add it to Rspec
+# even_sum = EvenFibonacciSum.new
+# p even_sum.find_sum(4000000)
