@@ -3,9 +3,7 @@
 # 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, ...
 # By considering the terms in the Fibonacci sequence whose values do not exceed four million, find the sum of the even-valued terms.
 
-class InvalidArgument < StandardError; end
-
-class EvenFibonacciSum < InvalidArgument
+class EvenFibonacciSum
   attr_accessor :sum, :prev_even_num, :next_even_num
 
   def initialize
@@ -23,7 +21,7 @@ class EvenFibonacciSum < InvalidArgument
         sum
       end
     else
-      InvalidArgument.new("A valid integer is required as an input")
+      ArgumentError.new("A valid integer is required as an input")
     end
   end
 

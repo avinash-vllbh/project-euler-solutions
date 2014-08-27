@@ -4,9 +4,7 @@
 
 require 'pry'
 
-class InvalidArgument < StandardError; end
-
-class LargestPrimeFactor < InvalidArgument
+class LargestPrimeFactor
   attr_accessor :primes, :factors
 
   def initialize
@@ -29,7 +27,7 @@ class LargestPrimeFactor < InvalidArgument
       end
       return factors.max
     else
-      InvalidArgument.new("A valid integer is required as an input")
+      ArgumentError.new("A valid integer is required as an input")
     end
   end
 
