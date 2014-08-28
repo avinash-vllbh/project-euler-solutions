@@ -6,6 +6,9 @@
 
 class SumSquareDifference
 
+  #Return the difference of square of sum - sum of squares
+  # Time complexity - O(1)
+  # Space complexity - O(1)
   def get_difference(input)
     if(Integer(input) rescue false)
       return sum_square(input)-squares_sum(input)
