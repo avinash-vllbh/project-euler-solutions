@@ -19,6 +19,7 @@ class NthPrime
       count += 1
       break if count > limit
     end
+    puts nth_prime
   end
 
   def trail_division(limit)
@@ -33,17 +34,17 @@ class NthPrime
 end
 
 prime = NthPrime.new
-iterations = 2
+iterations = 1
 # according to Benchmark results using the ruby method for finding LCM is much faster that the one given by Project Euler
 Benchmark.bm(40) do |bm|
   bm.report('EratosthenesGenerator') do
     iterations.times do
-      prime.eratosthenes_primes(100001)
+      prime.eratosthenes_primes(10001)
     end
   end
   bm.report('TrialDivisionGenerator') do
     iterations.times do
-      prime.trail_division(100001)
+      prime.trail_division(10001)
     end
   end
 end
