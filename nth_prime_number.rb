@@ -35,7 +35,9 @@ end
 
 prime = NthPrime.new
 iterations = 1
-# according to Benchmark results using the ruby method for finding LCM is much faster that the one given by Project Euler
+# according to Benchmark results
+# - Both Eratosthenes and TrailDivison seems to take same time for smaller upper bounds
+# - For large upperbounds Eratosthenes seems to be much faster
 Benchmark.bm(40) do |bm|
   bm.report('EratosthenesGenerator') do
     iterations.times do
